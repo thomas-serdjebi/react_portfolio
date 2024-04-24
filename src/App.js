@@ -2,16 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 import HeaderNavBar from './components/navbars/header';
 import FooterNavBar from './components/navbars/footer';
-import  './styles/body.css';
+import Home from './components/home.js'
+import  {useState}  from 'react'
+import './styles/main.css'
+
 
 function App() {
+
+  const [darkTheme, setDarkTheme] = useState(false);
+
+  // console.log(darkTheme)
+
   return (
     <>
-      <HeaderNavBar/>
-      <body style={{height: '3000px', backgroundColor: '#eaeaea'}}>
-
-      </body>
-      <FooterNavBar/>
+      <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+      <Home darkTheme={darkTheme}/>
+      <FooterNavBar />
     </>
   );
 }
