@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route index element={<App />} />
+        <Route index path="/home" element={<App />} />
         {/* <Route path="/firstPage" element={<FirstComp />} /> */}
       </Routes>
     </BrowserRouter>
