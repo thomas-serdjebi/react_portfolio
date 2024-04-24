@@ -1,12 +1,13 @@
 
 .navbar {
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s;
 }
 
-.scrolled .navbar {
+.scrolled {
     background-color: transparent;
 }
   
+
 .navbar .navbar-brand img {
 width: 60px;
 height: 60px;
@@ -25,6 +26,6 @@ margin-right: 10px;
 margin-left: 5px; 
 }
 
-.name {
+.grey_words {
     color: grey;
 }
