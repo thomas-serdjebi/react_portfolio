@@ -24,7 +24,7 @@ function HeaderNavBar({darkTheme, setDarkTheme, langue}) {
           setMenus(data);
       })
       .catch(error => {
-        setMenus(['Accueil', 'À propos', 'Projets', 'Contacts']); 
+        setMenus(['Accueil', 'Profil', 'Projets', 'Contacts']); 
       });
 
     window.addEventListener('scroll', handleScroll);
@@ -61,7 +61,7 @@ function HeaderNavBar({darkTheme, setDarkTheme, langue}) {
                         <ul className="navbar-nav  px-5">
                             {menus.map((menuItem, index) => (
                                 <li className="nav-item" key={index}>
-                                    <a className="nav-link grey_links" href="#">{menuItem}</a>
+                                    <a className="nav-link grey_links" href="Profile">{menuItem}</a>
                                 </li>
                             ))}
                         </ul>
