@@ -10,14 +10,15 @@ import './styles/main.css'
 function App() {
 
   const [darkTheme, setDarkTheme] = useState(false);
+  const [langue, setLangue] = useState('FR');
 
   // console.log(darkTheme)
 
   return (
     <>
-      <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
-      <Home darkTheme={darkTheme}/>
-      <FooterNavBar />
+      <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} />
+      <Home darkTheme={darkTheme} langue={langue}/>
+      <FooterNavBar darkTheme={darkTheme} langue={langue} />
     </>
   );
 }
