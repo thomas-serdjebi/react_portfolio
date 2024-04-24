@@ -4,6 +4,7 @@ import Profile from "../../assets/profile.jpg"
 
 function FooterNavBar() {
     return (<>
+    <div>
         <footer>
             <div className="container">
                 <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -23,6 +24,7 @@ function FooterNavBar() {
                 </footer>
             </div>
         </footer>
+        </div>
     </>
     )
 }

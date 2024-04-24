@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Profile from "../../assets/profile.jpg";
+import '../../styles/header.css'
 
-function HeaderNavBar() {
+function HeaderNavBar({darkTheme, setDarkTheme}) {
 
   const [scrolled, setScrolled] = useState(false);
   const [menus, setMenus] = useState([]) 
   const [langueInput, setLangueInput] = useState('FRA');
-  const [darkTheme, setDarkTheme] = useState(false); // État pour gérer le thème
 
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
       if (offset > 100) {
         setScrolled(true);
+        console.log('scrolled')
       } else {
         setScrolled(false);
       }
@@ -24,7 +25,7 @@ function HeaderNavBar() {
           setMenus(data);
       })
       .catch(error => {
-        setMenus([{text : "Bienvenue sur mon Site"}]); 
+        setMenus(['Accueil', 'À propos', 'Projets', 'Contacts']); 
       });
 
     window.addEventListener('scroll', handleScroll);
@@ -32,23 +33,24 @@ function HeaderNavBar() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [langueInput]); 
 
-  // Fonction pour basculer entre les thèmes
+
   const toggleTheme = () => {
     setDarkTheme(!darkTheme);
   };
 
   return (
     <>
+    <div>
       <header>
-        <nav className={`navbar navbar-expand-lg justify-content-between fixed-top ${scrolled ? 'scrolled' : ''} ${darkTheme ? 'navbar-dark bg-dark' : 'navbar-light bg-light'}`} style={{ transition: 'background-color 0.3s', backgroundColor: scrolled ? 'transparent' : '#f8f9fa' }}>
+      <nav className={`navbar navbar-expand-lg justify-content-between fixed-top ${scrolled ? 'scrolled' : ''} ${darkTheme ? 'navbar-dark bg-dark' : 'navbar-light bg-light'}`}>
           <nav className="navbar align-top ps-5">
             <a className="navbar-brand d-flex flex-row" href="#">
-              <div className="nav-link">
+              <div>
                 <img src={Profile} width="60" height="60" className="d-inline-block align-top rounded-circle me-3" alt="" />
               </div>
-              <div className="d-flex flex-column fw-bold">
+              <div className="d-flex flex-column fw-bold name">
                 <div>Thomas</div>
                 <div>Serdjebi</div>
               </div>
@@ -73,6 +75,7 @@ function HeaderNavBar() {
           <button onClick={toggleTheme}>Theme</button> 
         </nav>
       </header>
+      </div>
     </>
   );
 }
