@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Profile from "../../assets/profile.jpg";
-import '../../styles/header.css'
+import '../../styles/nav.css'
 
-function HeaderNavBar({darkTheme, setDarkTheme}) {
+function HeaderNavBar({darkTheme, setDarkTheme, langue}) {
 
   const [scrolled, setScrolled] = useState(false);
   const [menus, setMenus] = useState([]) 
-  const [langueInput, setLangueInput] = useState('FRA');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +18,7 @@ function HeaderNavBar({darkTheme, setDarkTheme}) {
       }
     };
 
-    fetch(`https://api/menus=${langueInput}`)
+    fetch(`https://api/header=${langue}`)
       .then(response => response.json())
       .then(data => {
           setMenus(data);
@@ -33,7 +32,7 @@ function HeaderNavBar({darkTheme, setDarkTheme}) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [langueInput]); 
+  }, [langue]); 
 
 
   const toggleTheme = () => {
@@ -52,7 +51,7 @@ function HeaderNavBar({darkTheme, setDarkTheme}) {
               <div>
                 <img src={Profile} width="60" height="60" className="d-inline-block align-top rounded-circle me-3" alt="" />
               </div>
-              <div className="d-flex flex-column fw-bold grey_words">
+              <div className="d-flex flex-column fw-bold grey_links">
                 <div>Thomas</div>
                 <div>Serdjebi</div>
               </div>
@@ -61,16 +60,16 @@ function HeaderNavBar({darkTheme, setDarkTheme}) {
           <div className="fw-bold me-5" id="navbarNav">
             <ul className="navbar-nav  px-5">
               <li className="nav-item">
-                <a className="nav-link grey_words" href="#">ACCUEIL</a>
+                <a className="nav-link grey_links" href="#">ACCUEIL</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link grey_words" href="#">A PROPOS</a>
+                <a className="nav-link grey_links" href="#">A PROPOS</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link grey_words" href="#">PROJETS</a>
+                <a className="nav-link grey_links" href="#">PROJETS</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link grey_words" href="#">CONTACTS</a>
+                <a className="nav-link grey_links" href="#">CONTACTS</a>
               </li>
             </ul>
           </div>
