@@ -44,31 +44,33 @@ function HeaderNavBar({darkTheme, setDarkTheme}) {
     <>
     <div>
       <header>
-      <nav className={`navbar navbar-expand-lg justify-content-between fixed-top ${scrolled ? 'scrolled' : ''} ${darkTheme ? 'navbar-dark bg-dark' : 'navbar-light bg-light'}`}>
+      <nav className={`navbar navbar-expand-lg justify-content-between fixed-top ${
+        scrolled ? (darkTheme ? 'navbar-dark' : 'navbar-light') : (darkTheme ? 'navbar-dark bg-dark' : 'navbar-light bg-light')
+        }`}>
           <nav className="navbar align-top ps-5">
             <a className="navbar-brand d-flex flex-row" href="#">
               <div>
                 <img src={Profile} width="60" height="60" className="d-inline-block align-top rounded-circle me-3" alt="" />
               </div>
-              <div className="d-flex flex-column fw-bold name">
+              <div className="d-flex flex-column fw-bold grey_words">
                 <div>Thomas</div>
                 <div>Serdjebi</div>
               </div>
             </a>
           </nav>
           <div className="fw-bold me-5" id="navbarNav">
-            <ul className="navbar-nav px-5">
+            <ul className="navbar-nav  px-5">
               <li className="nav-item">
-                <a className="nav-link" href="#">ACCUEIL</a>
+                <a className="nav-link grey_words" href="#">ACCUEIL</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">A PROPOS</a>
+                <a className="nav-link grey_words" href="#">A PROPOS</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">PROJETS</a>
+                <a className="nav-link grey_words" href="#">PROJETS</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">CONTACTS</a>
+                <a className="nav-link grey_words" href="#">CONTACTS</a>
               </li>
             </ul>
           </div>
