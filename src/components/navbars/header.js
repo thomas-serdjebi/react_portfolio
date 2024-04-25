@@ -44,7 +44,7 @@ function HeaderNavBar({darkTheme, setDarkTheme, langue}) {
         <div>
             <header>
                 <nav className={`navbar navbar-expand-lg justify-content-between fixed-top ${
-                    scrolled ? (darkTheme ? 'navbar-dark' : 'navbar-light') : (darkTheme ? 'navbar-dark bg-dark' : 'navbar-light bg-light')
+                    scrolled ? (darkTheme ? 'navbar-dark bg-dark' : 'navbar-light bg-light') : (darkTheme ? 'navbar-dark' : 'navbar-light')
                 }`}>
                     <nav className="navbar align-top ps-5">
                         <a className="navbar-brand d-flex flex-row" href="#">
