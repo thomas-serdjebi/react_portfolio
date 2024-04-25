@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import HeaderNavBar from './navbars/header';
 import FooterNavBar from './navbars/footer';
+import AboutSection from './sections/about';
+import ResumeSection from './sections/resume';
 import '../styles/main.css'
 import '../styles/templ.css'
 
@@ -31,19 +33,21 @@ function Profile({ }) {
 
     const [formations, setFormations] = useState([
         {
-            diplome: '',
+            intitule: '',
             annee: '',
-            ecole: '',
-            sous_diplome_1: '',
-            sous_diplome_2: '',
-            sous_diplome_3: '',
+            compagnie_lieu: '',
+            detail_1: '',
+            detail_2: '',
+            detail_3: '',
         }]);
 
     const [experiences, setExperiences] = useState([{
-        poste: '',
-        date: '',
-        compagnie: '',
+        intitule: '',
+        annee: '',
+        compagnie_lieu: '',
         detail_1: '',
+        detail_2: '',
+        detail_3: '',
     }])
 
     useEffect(() => {
@@ -83,43 +87,43 @@ function Profile({ }) {
                 setFormations([
                     {
                         diplome: 'TITRE RNC NIVEAU 7 EXPERT EN DEVELOPPEMENT LOGICIEL',
-                        ecole: 'ESIMED',
+                        compagnie_lieu: 'ESIMED',
                         annee: '2023-2025',
-                        sous_diplome_1: 'Gestion de projet',
-                        sous_diplome_2: 'Ingénierie logicielle',
-                        sous_diplome_3: 'Développement',
+                        detail_1: 'Gestion de projet',
+                        detail_2: 'Ingénierie logicielle',
+                        detail_3: 'Développement',
                     },
                     {
                         diplome: 'TITRE RNC NIVEAU 6 CONCEPTEUR DEVELOPPEUR D\'APPLICATIONS',
-                        ecole: 'La Plateforme',
+                        compagnie_lieu: 'La Plateforme',
                         annee: '2023',
-                        sous_diplome_1: 'Conception de projet web et d\'applications, gestion de projet',
-                        sous_diplome_2: 'Développement d\'application mobile en couche',
-                        sous_diplome_3: 'Création d\'API ',
+                        detail_1: 'Conception de projet web et d\'applications, gestion de projet',
+                        detail_2: 'Développement d\'application mobile en couche',
+                        detail_3: 'Création d\'API ',
                     },
                     {
                         diplome: 'DIPLOME DE COMPTABILTIE ET GESTION',
-                        ecole: 'Groupe Ecole Pratique',
+                        compagnie_lieu: 'Groupe Ecole Pratique',
                         annee: '2018 - 2020',
-                        sous_diplome_1: '',
-                        sous_diplome_2: '',
-                        sous_diplome_3: '',
+                        detail_1: '',
+                        detail_2: '',
+                        detail_3: '',
                     },
                     {
-                        diplome: 'BTS COMPTABILITÉ ET GESTION',
-                        ecole: 'Lycée Jeanne Perrimond',
+                        intitute: 'BTS COMPTABILITÉ ET GESTION',
+                        compagnie_lieu: 'Lycée Jeanne Perrimond',
                         annee: '2015 - 2017',
-                        sous_diplome_1: '',
-                        sous_diplome_2: '',
-                        sous_diplome_3: '',
+                        detail_1: '',
+                        detail_2: '',
+                        detail_3: '',
                     },
                     {
-                        diplome: 'BACCALAURÉAT SCIENTIFIQUE MENTION EUROPÉENNE ANGLAIS',
-                        ecole: 'Lycée Montgrand',
+                        intitute: 'BACCALAURÉAT SCIENTIFIQUE MENTION EUROPÉENNE ANGLAIS',
+                        compagnie_lieu: 'Lycée Montgrand',
                         annee: '2014',
-                        sous_diplome_1: '',
-                        sous_diplome_2: '',
-                        sous_diplome_3: '',
+                        detail_1: '',
+                        detail_2: '',
+                        detail_3: '',
                     }
 
 
@@ -135,38 +139,38 @@ function Profile({ }) {
                 setExperiences([
                     {
                         poste: 'Développeur L4G Apprenti SAGE X3',
-                        date: 'depuis août 2021',
-                        compagnie: 'Arcanes Intégrateur Sage X3, Marseille',
-                        sous_experience1: 'Développement de script spécifiques L4G notamment en module finance',
-                        sous_experience2: 'Analyse de besoins clients',
-                        sous_experience3: 'Rédaction de documentations techniques et fonctionnelles'
+                        annee: 'depuis août 2021',
+                        compagnie_lieu: 'Arcanes Intégrateur Sage X3, Marseille',
+                        detail_1: 'Développement de script spécifiques L4G notamment en module finance',
+                        detail_2: 'Analyse de besoins clients',
+                        detail_3: 'Rédaction de documentations techniques et fonctionnelles'
 
                     },
                     {
                         poste: 'COMPTABLE FOURNISSEUR',
-                        date: 'Mai 2021 - Septembre 202',
-                        compagnie: 'Bourbon Offshore Surf, Marseille',
-                        sous_experience1: '',
-                        sous_experience2: '',
-                        sous_experience3: ''
+                        annee: 'Mai 2021 - Septembre 202',
+                        compagnie_lieu: 'Bourbon Offshore Surf, Marseille',
+                        detail_1: '',
+                        detail_2: '',
+                        detail_3: ''
 
                     },
                     {
                         poste: 'COMPTABLE CLIENT',
-                        date: 'Septembre 2020 - Avril 2021',
-                        compagnie: 'Comasud, Marseille',
-                        sous_experience1: '',
-                        sous_experience2: '',
-                        sous_experience3: ''
+                        annee: 'Septembre 2020 - Avril 2021',
+                        compagnie_lieu: 'Comasud, Marseille',
+                        detail_1: '',
+                        detail_2: '',
+                        detail_3: ''
 
                     },
                     {
                         poste: 'ASSISTANT COMPTABLE APPRENTI',
-                        date: 'Septembre 2020 - Avril 2021',
-                        compagnie: 'cabinet A3A Entreprises, Marseille',
-                        sous_experience1: '',
-                        sous_experience2: '',
-                        sous_experience3: ''
+                        annee: 'Septembre 2020 - Avril 2021',
+                        compagnie_lieu: 'cabinet A3A Entreprises, Marseille',
+                        detail_1: '',
+                        detail_2: '',
+                        detail_3: ''
 
                     },
 
@@ -179,88 +183,8 @@ function Profile({ }) {
     return (
         <>
             <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} />
-            <section id="about" className="about">
-                <div className={`main sectionboot d-flex pt-5 align-items-center justify-content-center ${darkTheme ? 'darktheme' : ''}`} data-aos="fade-up">
-
-                    <div className="section-title">
-                        <h2>{profile['titre1']}</h2>
-                        <p>{profile['sous_titre_2']}</p>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-lg-4">
-                            <img src="assets/img/portfolio/profilpic.jfif" className="img-fluid" alt=""></img>
-                        </div>
-                        <div className="col-lg-8 pt-4 pt-lg-0 content">
-                            <h3>{profile['sous_titre_3']}</h3>
-
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <ul>
-                                        <li><i className="bi bi-chevron-right"></i> <strong>{profile['date_naissance']}</strong> <span>{profile['date']}</span></li>
-                                        <li><i className="bi bi-chevron-right"></i> <strong>{profile['mobile']}</strong> <span>{profile['numero']}</span></li>
-                                        <li><i className="bi bi-chevron-right"></i> <strong>{profile['ville_langue']}</strong> <span>{profile['ville']}</span></li>
-                                    </ul>
-                                </div>
-                                <div className="col-lg-6">
-                                    <ul>
-                                        <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{profile['age']}</span></li>
-                                        <li><i className="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{profile['email']}</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section id="resume" class="resume">
-                <div class="container" data-aos="fade-up">
-
-                    <div class="section-title">
-                        <h2>{profile['titre2']}</h2>
-                        <p>{profile['sous_titre4']}</p>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-lg-6">
-                            <h3 className="resume-title">{profile['sous_titre5']}</h3>
-                            {formations.map((formation, index) => (
-                                <div key={index} className="resume-item">
-                                    <h4>{formation['diplome']}</h4>
-                                    <h5>{formation['annee']}</h5>
-                                    <p><em>{formation['ecole']}</em></p>
-                                    {(formation['sous_diplome_1'] || formation['sous_diplome_2'] || formation['sous_diplome_3']) &&
-                                        <ul>
-                                            {formation['sous_diplome_1'] && <li>{formation['sous_diplome_1']}</li>}
-                                            {formation['sous_diplome_2'] && <li>{formation['sous_diplome_2']}</li>}
-                                            {formation['sous_diplome_3'] && <li>{formation['sous_diplome_3']}</li>}
-                                        </ul>
-                                    }
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="col-lg-6">
-                            <h3 className="resume-title">{profile['sous_titre6']}</h3>
-                            {experiences.map((experience, index) => (
-                                <div key={index} className="resume-item">
-                                    <h4>{experience['poste']}</h4>
-                                    <h5>{experience['date']}</h5>
-                                    <p><em>{experience['compagnie']}</em></p>
-                                    <ul>
-                                        {experience['sous_experience_1'] && <li>{experience['sous_experience_1']}</li>}
-                                        {experience['sous_experience_2'] && <li>{experience['sous_experience_2']}</li>}
-                                        {experience['sous_experience_3'] && <li>{experience['sous_experience_3']}</li>}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                </div>
-            </section>
+            <AboutSection profile={profile} darkTheme={darkTheme} />
+            <ResumeSection profile={profile}  formations={formations} experiences={experiences} darkTheme={darkTheme} />
             <FooterNavBar darkTheme={darkTheme} langue={langue} />
         </>
     )
