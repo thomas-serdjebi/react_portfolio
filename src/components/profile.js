@@ -9,64 +9,37 @@ import '../styles/templ.css'
 
 function Profile({ }) {
 
-    const [darkTheme, setDarkTheme] = useState(false);
-    const [langue, setLangue] = useState('FR');
+    const frStaticWords = {
+        titre1: 'PROFIL',
+        date_naissance: 'Date de naissance',
+        ville_langue: 'Ville',
+        mobile: 'Mobile',
+        titre2: 'Parcours',
+        titre3: 'Formations',
+        titre4: 'Expériences professionnelles'
 
-    const [profile, setProfile] = useState({
-        titre1: '',
-        sous_titre_1: '',
-        sous_titre_2: '',
-        sous_titre_3: '',
-        date_naissance: '',
-        date: '',
-        ville_langue: '',
-        ville: '',
-        mobile: '',
-        age: '',
-        numero: '',
-        email: '',
-        titre2: '',
-        sous_titre4: '',
-        sous_titre5: '',
-        sous_titre6: ''
-    })
+    }
 
-    const [formations, setFormations] = useState([
-        {
-            intitule: '',
-            annee: '',
-            compagnie_lieu: '',
-            detail_1: '',
-            detail_2: '',
-            detail_3: '',
-        }]);
-
-    const [experiences, setExperiences] = useState([{
-        intitule: '',
-        annee: '',
-        compagnie_lieu: '',
-        detail_1: '',
-        detail_2: '',
-        detail_3: '',
-    }])
+    const enStaticWords = {
+        titre1: 'PROFILE',
+        date_naissance: 'Birth Date',
+        ville_langue: 'City',
+        mobile: 'Phone number',
+        titre2: 'Background',
+        titre3: 'Education',
+        titre4: 'Professional Experiences'
+    }
 
     const frProfile = {
-        titre1: 'Profil',
         sous_titre_1: 'Concepteur Développeur d\'Applications',
         sous_titre_2: 'Etudiant en master développement logiciel chez ESIMED',
         sous_titre_3: 'Concepteur Développeur d\'Applications',
-        date_naissance: 'Date de naissance',
         date: '07/05/1996',
-        ville_langue: 'Ville',
         ville: 'Marseille',
-        mobile: 'mobile',
         age: '27',
         numero: '06.26.03.68.77.',
         email: 'thomas.r.serdjebi@gmail.com',
-        titre2: 'Parcours',
         sous_titre4: 'Initialement issu d \'un parcours en comptabilité, je me suis reconverti en tant que Développeur Web & Logiciel.',
-        sous_titre5: 'Formations',
-        sous_titre6: 'Expérience professionnelles'
     }
 
     const enProfile =
@@ -74,20 +47,15 @@ function Profile({ }) {
         sous_titre_1: 'Application Developer',
         sous_titre_2: 'Master student in software development at ESIMED',
         sous_titre_3: 'Application Developer',
-        date_naissance: 'Date of Birth',
         date: '07/05/1996',
-        ville_langue: 'City',
         ville: 'Marseille',
-        mobile: 'Mobile',
         age: '27',
         numero: '06.26.03.68.77.',
         email: 'thomas.r.serdjebi@gmail.com',
-        titre2: 'Background',
         sous_titre4: 'Originally from an accounting background, I retrained as a Web & Software Developer.',
-        sous_titre5: 'Education',
-        sous_titre6: 'Professional Experience
     }
 
+    
     const frFormation = [
         {
             intitule: 'TITRE RNC NIVEAU 7 EXPERT EN DEVELOPPEMENT LOGICIEL',
@@ -251,7 +219,14 @@ function Profile({ }) {
             detail_3: ''
         }
     ]
-    
+
+
+    const [darkTheme, setDarkTheme] = useState(false);
+    const [langue, setLangue] = useState('');
+    const [staticWords, setStaticWords] = useState(frStaticWords)
+    const [profile, setProfile] = useState(frProfile)
+    const [formations, setFormations] = useState(frFormation);
+    const [experiences, setExperiences] = useState(frExperience)
 
 
     useEffect(() => {
@@ -264,7 +239,7 @@ function Profile({ }) {
             .catch(error => {
                 if (langue === "FR") {
                     setProfile(frProfile)
-                } 
+                }
 
                 if (langue === "EN") {
                     setProfile(enProfile)
@@ -279,7 +254,7 @@ function Profile({ }) {
             .catch(error => {
                 if (langue === "FR") {
                     setFormations(frFormation)
-                } 
+                }
 
                 if (langue === "EN") {
                     setFormations(enFormation)
@@ -294,12 +269,29 @@ function Profile({ }) {
             .catch(error => {
                 if (langue === "FR") {
                     setExperiences(frExperience)
-                } 
+                }
 
                 if (langue === "EN") {
                     setProfile(enExperience)
                 }
             });
+
+        fetch(`https://api/profile_static_words=${langue}`)
+            .then(response => response.json())
+            .then(data => {
+                setStaticWords(data);
+            })
+            .catch(error => {
+                if (langue === "FR") {
+                    setStaticWords(frStaticWords)
+                }
+
+                if (langue === "EN") {
+                    setStaticWords(enStaticWords)
+                }
+            });
+
+
     }, [langue]);
 
 
@@ -307,8 +299,8 @@ function Profile({ }) {
     return (
         <>
             <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} />
-            <AboutSection profile={profile} darkTheme={darkTheme} />
-            <ResumeSection profile={profile} formations={formations} experiences={experiences} darkTheme={darkTheme} />
+            <AboutSection staticWords={staticWords} profile={profile} darkTheme={darkTheme} />
+            <ResumeSection staticWords={staticWords} profile={profile} formations={formations} experiences={experiences} darkTheme={darkTheme} />
             <FooterNavBar darkTheme={darkTheme} langue={langue} />
         </>
     )
