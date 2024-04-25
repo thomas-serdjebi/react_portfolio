@@ -1,12 +1,17 @@
 .main {
     min-height:800px;
+    margin-top: -70px;
 }
+
+
 
 .darktheme
 {
     background-color: black;
     color: white;
 }
+
+
 
 .white_words 
 {

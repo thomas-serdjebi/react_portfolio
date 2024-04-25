@@ -68,7 +68,7 @@ function Profile({ }) {
                     numero: '06.26.03.68.77.',
                     email: 'thomas.r.serdjebi@gmail.com',
                     titre2: 'Parcours',
-                    sous_titre4: 'Initialement issu d \'un parcours en comptabilité, je me suis reconverti en tant que Développeur Web & Web Mobile.',
+                    sous_titre4: 'Initialement issu d \'un parcours en comptabilité, je me suis reconverti en tant que Développeur Web & Logiciel.',
                     sous_titre5: 'Formations',
                     sous_titre6: 'Expérience professionnelles'
                 });
@@ -80,14 +80,50 @@ function Profile({ }) {
                 setFormations(data);
             })
             .catch(error => {
-                setFormations([{
-                    diplome: 'TITRE RNC NIVEAU 6 CONCEPTEUR DEVELOPPEUR D\'APPLICATIONS',
-                    ecole: 'La plateforme',
-                    annee: '2023',
-                    sous_diplome_1: 'Conception de projet web et d\'applications, gestion de projet',
-                    sous_diplome_2: 'Développement d\'application mobile en couche',
-                    sous_diplome_3: 'Création d\'API ',
-                }]);
+                setFormations([
+                    {
+                        diplome: 'TITRE RNC NIVEAU 7 EXPERT EN DEVELOPPEMENT LOGICIEL',
+                        ecole: 'ESIMED',
+                        annee: '2023-2025',
+                        sous_diplome_1: 'Gestion de projet',
+                        sous_diplome_2: 'Ingénierie logicielle',
+                        sous_diplome_3: 'Développement',
+                    },
+                    {
+                        diplome: 'TITRE RNC NIVEAU 6 CONCEPTEUR DEVELOPPEUR D\'APPLICATIONS',
+                        ecole: 'La Plateforme',
+                        annee: '2023',
+                        sous_diplome_1: 'Conception de projet web et d\'applications, gestion de projet',
+                        sous_diplome_2: 'Développement d\'application mobile en couche',
+                        sous_diplome_3: 'Création d\'API ',
+                    },
+                    {
+                        diplome: 'DIPLOME DE COMPTABILTIE ET GESTION',
+                        ecole: 'Groupe Ecole Pratique',
+                        annee: '2018 - 2020',
+                        sous_diplome_1: '',
+                        sous_diplome_2: '',
+                        sous_diplome_3: '',
+                    },
+                    {
+                        diplome: 'BTS COMPTABILITÉ ET GESTION',
+                        ecole: 'Lycée Jeanne Perrimond',
+                        annee: '2015 - 2017',
+                        sous_diplome_1: '',
+                        sous_diplome_2: '',
+                        sous_diplome_3: '',
+                    },
+                    {
+                        diplome: 'BACCALAURÉAT SCIENTIFIQUE MENTION EUROPÉENNE ANGLAIS',
+                        ecole: 'Lycée Montgrand',
+                        annee: '2014',
+                        sous_diplome_1: '',
+                        sous_diplome_2: '',
+                        sous_diplome_3: '',
+                    }
+
+
+                ]);
             });
 
         fetch(`https://api/experience=${langue}`)
@@ -96,15 +132,45 @@ function Profile({ }) {
                 setExperiences(data);
             })
             .catch(error => {
-                setExperiences([{
-                    poste: 'Développeur L4G Apprenti SAGE X3',
-                    date: 'depuis août 2021',
-                    compagnie: 'Arcanes Intégrateur Sage X3',
-                    sous_experience1: 'Développement de script spécifiques L4G notamment en module finance',
-                    sous_experience2: 'Analyse de besoins clients',
-                    sous_experience3: 'Rédaction de documentations techniques et fonctionnelles'
+                setExperiences([
+                    {
+                        poste: 'Développeur L4G Apprenti SAGE X3',
+                        date: 'depuis août 2021',
+                        compagnie: 'Arcanes Intégrateur Sage X3, Marseille',
+                        sous_experience1: 'Développement de script spécifiques L4G notamment en module finance',
+                        sous_experience2: 'Analyse de besoins clients',
+                        sous_experience3: 'Rédaction de documentations techniques et fonctionnelles'
 
-                }]);
+                    },
+                    {
+                        poste: 'COMPTABLE FOURNISSEUR',
+                        date: 'Mai 2021 - Septembre 202',
+                        compagnie: 'Bourbon Offshore Surf, Marseille',
+                        sous_experience1: '',
+                        sous_experience2: '',
+                        sous_experience3: ''
+
+                    },
+                    {
+                        poste: 'COMPTABLE CLIENT',
+                        date: 'Septembre 2020 - Avril 2021',
+                        compagnie: 'Comasud, Marseille',
+                        sous_experience1: '',
+                        sous_experience2: '',
+                        sous_experience3: ''
+
+                    },
+                    {
+                        poste: 'ASSISTANT COMPTABLE APPRENTI',
+                        date: 'Septembre 2020 - Avril 2021',
+                        compagnie: 'cabinet A3A Entreprises, Marseille',
+                        sous_experience1: '',
+                        sous_experience2: '',
+                        sous_experience3: ''
+
+                    },
+
+                ]);
             });
     }, [langue]);
 
@@ -114,7 +180,7 @@ function Profile({ }) {
         <>
             <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} />
             <section id="about" className="about">
-                <div className={`main d-flex pt-5 align-items-center justify-content-center ${darkTheme ? 'darktheme' : ''}`} data-aos="fade-up">
+                <div className={`main sectionboot d-flex pt-5 align-items-center justify-content-center ${darkTheme ? 'darktheme' : ''}`} data-aos="fade-up">
 
                     <div className="section-title">
                         <h2>{profile['titre1']}</h2>

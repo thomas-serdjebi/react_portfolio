@@ -12,8 +12,6 @@ function App() {
   const [darkTheme, setDarkTheme] = useState(false);
   const [langue, setLangue] = useState('FR');
 
-  // console.log(darkTheme)
-
   return (
     <>
       <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} />
