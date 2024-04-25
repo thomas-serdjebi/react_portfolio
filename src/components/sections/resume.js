@@ -15,7 +15,7 @@ function ResumeSection({ profile, formations, experiences, darkTheme }) {
                     <h3 className="resume-title">{profile['sous_titre5']}</h3>
                     {formations.map((formation, index) => (
                         <div key={index} className="resume-item">
-                            <h4>{formation['intitute']}</h4>
+                            <h4>{formation['intitule']}</h4>
                             <h4>{formation['annee']}</h4>
                             <p><em>{formation['compagnie_lieu']}</em></p>
                             {(formation['detail_1'] || formation['detail_2'] || formation['detail_3']) &&
@@ -33,7 +33,7 @@ function ResumeSection({ profile, formations, experiences, darkTheme }) {
                     <h3 className="resume-title">{profile['sous_titre6']}</h3>
                     {experiences.map((experience, index) => (
                         <div key={index} className="resume-item">
-                            <h4>{experience['poste']}</h4>
+                            <h4>{experience['intitule']}</h4>
                             <h4>{experience['annee']}</h4>
                             <p><em>{experience['compagnie_lieu']}</em></p>
                             <ul>
