@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Profile from "../../assets/profile.jpg";
 import '../../styles/nav.css'
 
-function HeaderNavBar({ darkTheme, setDarkTheme, langue, setLangue }) {
-  const [identity, setIdentity] = useState('')
+function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue }) {
+
   const [scrolled, setScrolled] = useState(false);
   const [activeLangue, setActiveLangue] = useState(langue);
 
@@ -12,14 +12,14 @@ function HeaderNavBar({ darkTheme, setDarkTheme, langue, setLangue }) {
     about: 'Profil',
     projects: 'Projets',
     blog: 'Blog'
-  }
+  };
 
   const enMenus = {
     home: 'Home',
     about: 'Profile',
     projects: 'Projects',
     blog: 'Blog'
-  }
+  };
 
   const [menus, setMenus] = useState(langue === 'FR' ? frMenus : enMenus);
 
@@ -28,36 +28,25 @@ function HeaderNavBar({ darkTheme, setDarkTheme, langue, setLangue }) {
       const offset = window.scrollY;
       if (offset > 1) {
         setScrolled(true);
-        console.log('scrolled')
       } else {
         setScrolled(false);
       }
     };
 
-    fetch(`https://api/identity`)
-      .then(response => response.json())
-      .then(data => {
-        setIdentity(data);
-      })
-      .catch(error => {
-        setIdentity({
-          prenom: 'Thomas',
-          nom: 'Serdjebi'
-        });
-      });
-
+    // Commented out API fetch, uncomment to fetch menus from an API
+    /*
     fetch(`https://api/header=${langue}`)
       .then(response => response.json())
       .then(data => {
         setMenus(data);
       })
       .catch(error => {
-        if (langue === "FR") {
-          setMenus(frMenus)
-        } else {
-          setMenus(enMenus)
-        }
+        console.log(error)
       });
+    */
+
+    setMenus(langue === 'FR' ? frMenus : enMenus);
+    setActiveLangue(langue);
 
     window.addEventListener('scroll', handleScroll);
 
@@ -75,13 +64,20 @@ function HeaderNavBar({ darkTheme, setDarkTheme, langue, setLangue }) {
     setActiveLangue(lang);
   };
 
+  useEffect(() => {
+    sessionStorage.setItem('langue', langue);
+  }, [langue]);
+
+
+  useEffect(() => {
+    sessionStorage.setItem('darkTheme', darkTheme);
+  }, [darkTheme]);
+
   return (
     <>
       <div>
         <header>
-          <nav className={`navbar navbar-expand-lg justify-content-between fixed-top ${
-            scrolled ? (darkTheme ? 'navbar-dark bg-dark' : 'navbar-light bg-light') : (darkTheme ? 'navbar-dark' : 'navbar-light')
-          }`}>
+          <nav className={`navbar navbar-expand-lg justify-content-between fixed-top ${scrolled ? (darkTheme ? 'navbar-dark bg-dark' : 'navbar-light bg-light') : (darkTheme ? 'navbar-dark' : 'navbar-light')}`}>
             <nav className="navbar align-top ps-5">
               <a className="navbar-brand d-flex flex-row" href="#">
                 <div>
@@ -97,14 +93,14 @@ function HeaderNavBar({ darkTheme, setDarkTheme, langue, setLangue }) {
               <ul className="navbar-nav  px-5">
                 {Object.keys(menus).map((key, index) => (
                   <li className="nav-item" key={index}>
-                    <a className="nav-link grey_links" href={`/${key}?darkTheme=${darkTheme}`}>{menus[key]}</a>
+                    <a className="nav-link grey_links" href={`/${key}`}>{menus[key]}</a>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="btn-group me-3" role="group" aria-label="Language">
-              <button type="button" className={`btn ${activeLangue === 'EN' ? (darkTheme ? 'btn-light' : 'btn-dark' ) :  (darkTheme ? 'btn-dark' : 'btn-light' ) }`} onClick={() => changeLangue('EN')}>EN</button>
-              <button type="button" className={`btn ${activeLangue === 'FR' ? (darkTheme ? 'btn-light' : 'btn-dark' ) :  (darkTheme ? 'btn-dark' : 'btn-light' ) }`}onClick={() => changeLangue('FR')}>FR</button>
+              <button type="button" className={`btn ${activeLangue === 'EN' ? (darkTheme ? 'btn-light' : 'btn-dark') : (darkTheme ? 'btn-dark' : 'btn-light')}`} onClick={() => changeLangue('EN')}>EN</button>
+              <button type="button" className={`btn ${activeLangue === 'FR' ? (darkTheme ? 'btn-light' : 'btn-dark') : (darkTheme ? 'btn-dark' : 'btn-light')}`} onClick={() => changeLangue('FR')}>FR</button>
             </div>
             <button className={`btn ${darkTheme ? 'btn-light' : 'btn-dark'}`} onClick={toggleTheme}>Theme</button>
           </nav>

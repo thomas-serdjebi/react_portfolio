@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import HeaderNavBar from './navbars/header';
-import FooterNavBar from './navbars/footer';
 import AboutSection from './sections/about';
 import ResumeSection from './sections/resume';
 import '../styles/main.css'
 import '../styles/templ.css'
 
 
-function Profile({ }) {
+function About({ darkTheme, langue }) {
 
     const frStaticWords = {
         titre1: 'PROFIL',
@@ -55,10 +53,10 @@ function Profile({ }) {
         sous_titre4: 'Originally from an accounting background, I retrained as a Web & Software Developer.',
     }
 
-    
+
     const frFormation = [
         {
-            intitule: 'TITRE RNC NIVEAU 7 EXPERT EN DEVELOPPEMENT LOGICIEL',
+            intitule: 'TITRE RNCP NIVEAU 7 EXPERT EN DEVELOPPEMENT LOGICIEL',
             compagnie_lieu: 'ESIMED',
             annee: '2023-2025',
             detail_1: 'Gestion de projet',
@@ -66,7 +64,7 @@ function Profile({ }) {
             detail_3: 'Développement',
         },
         {
-            intitule: 'TITRE RNC NIVEAU 6 CONCEPTEUR DEVELOPPEUR D\'APPLICATIONS',
+            intitule: 'TITRE RNCP NIVEAU 6 CONCEPTEUR DEVELOPPEUR D\'APPLICATIONS',
             compagnie_lieu: 'La Plateforme',
             annee: '2023',
             detail_1: 'Conception de projet web et d\'applications, gestion de projet',
@@ -103,7 +101,7 @@ function Profile({ }) {
 
     const enFormation = [
         {
-            intitule: 'RNC TITLE LEVEL 7 EXPERT IN SOFTWARE DEVELOPMENT',
+            intitule: 'RNCP TITLE LEVEL 7 EXPERT IN SOFTWARE DEVELOPMENT',
             compagnie_lieu: 'ESIMED',
             annee: '2023-2025',
             detail_1: 'Project Management',
@@ -111,7 +109,7 @@ function Profile({ }) {
             detail_3: 'Development',
         },
         {
-            intitule: 'RNC TITLE LEVEL 6 APPLICATIONS DESIGNER DEVELOPER',
+            intitule: 'RNCP TITLE LEVEL 6 APPLICATIONS DESIGNER DEVELOPER',
             compagnie_lieu: 'La Plateforme',
             annee: '2023',
             detail_1: 'Web and application project design, project management',
@@ -221,76 +219,64 @@ function Profile({ }) {
     ]
 
 
-    const [darkTheme, setDarkTheme] = useState(false);
-    const [langue, setLangue] = useState('');
-    const [staticWords, setStaticWords] = useState(frStaticWords)
-    const [profile, setProfile] = useState(frProfile)
-    const [formations, setFormations] = useState(frFormation);
-    const [experiences, setExperiences] = useState(frExperience)
+    const [staticWords, setStaticWords] = useState(langue === 'FR' ? frStaticWords : enStaticWords);
+    const [profile, setProfile] = useState(langue === 'FR' ? frProfile : enProfile);
+    const [formations, setFormations] = useState(langue === 'FR' ? frFormation : enFormation);
+    const [experiences, setExperiences] = useState(langue === 'FR' ? frExperience : enExperience);
+    
 
 
     useEffect(() => {
 
-        fetch(`https://api/profile=${langue}`)
-            .then(response => response.json())
-            .then(data => {
-                setProfile(data);
-            })
-            .catch(error => {
-                if (langue === "FR") {
-                    setProfile(frProfile)
-                }
+        // fetch(`https://api/profile=${langue}`)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setProfile(data);
+        //     })
+        //     .catch(error => {
+        //         console.log('erreur')
+        //     });
 
-                if (langue === "EN") {
-                    setProfile(enProfile)
-                }
-            });
+        //     if (langue === "FR") {
+        //         setProfile(frProfile)
+        //     }
 
-        fetch(`https://api/formation=${langue}`)
-            .then(response => response.json())
-            .then(data => {
-                setFormations(data);
-            })
-            .catch(error => {
-                if (langue === "FR") {
-                    setFormations(frFormation)
-                }
 
-                if (langue === "EN") {
-                    setFormations(enFormation)
-                }
-            });
 
-        fetch(`https://api/experience=${langue}`)
-            .then(response => response.json())
-            .then(data => {
-                setExperiences(data);
-            })
-            .catch(error => {
-                if (langue === "FR") {
-                    setExperiences(frExperience)
-                }
+        // fetch(`https://api/formation=${langue}`)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setFormations(data);
+        //     })
+        //     .catch(error => {
 
-                if (langue === "EN") {
-                    setProfile(enExperience)
-                }
-            });
+        //         console.log(error)
 
-        fetch(`https://api/profile_static_words=${langue}`)
-            .then(response => response.json())
-            .then(data => {
-                setStaticWords(data);
-            })
-            .catch(error => {
-                if (langue === "FR") {
-                    setStaticWords(frStaticWords)
-                }
+        //     });
 
-                if (langue === "EN") {
-                    setStaticWords(enStaticWords)
-                }
-            });
 
+        // fetch(`https://api/experience=${langue}`)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setExperiences(data);
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+
+        //     });
+
+
+
+        // fetch(`https://api/profile_static_words=${langue}`)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setStaticWords(data);
+        //     })
+        //     .catch(error => {
+
+        //         console.log(error)
+
+        //     });
 
     }, [langue]);
 
@@ -298,14 +284,12 @@ function Profile({ }) {
 
     return (
         <>
-            <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} />
-            <AboutSection staticWords={staticWords} profile={profile} darkTheme={darkTheme} />
-            <ResumeSection staticWords={staticWords} profile={profile} formations={formations} experiences={experiences} darkTheme={darkTheme} />
-            <FooterNavBar darkTheme={darkTheme} langue={langue} />
+            <AboutSection staticWords={staticWords} profile={profile} darkTheme={darkTheme} langue={langue} />
+            <ResumeSection staticWords={staticWords} profile={profile} formations={formations} experiences={experiences} darkTheme={darkTheme} langue={langue} />
         </>
     )
 
 }
 
 
-export default Profile;
+export default About;
