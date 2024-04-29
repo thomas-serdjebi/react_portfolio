@@ -34,23 +34,11 @@ function Layout() {
   const [identity, setIdentity] = useState(JSON.parse(sessionStorage.getItem('identity')) || (langue === 'FR' ? frIdentity : enIdentity));
 
   useEffect(() => {
-    
-    // fetch(`https://api/identity=${langue}`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setIdentity(data);
-    //     sessionStorage.setItem('identity', JSON.stringify(data));
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
 
     setIdentity(langue === 'FR' ? frIdentity : enIdentity);
     sessionStorage.setItem('darkTheme', darkTheme ? 'true' : 'false');
     sessionStorage.setItem('langue', langue);
     sessionStorage.setItem('identity', JSON.stringify(identity));
-
-
 
   }, [darkTheme, langue]);
 

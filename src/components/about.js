@@ -284,7 +284,6 @@ function AboutPage({ darkTheme, langue, identity}) {
     ]
 
 
-
     const [staticWords, setStaticWords] = useState(langue === 'FR' ? frStaticWords : enStaticWords);
     const [profile, setProfile] = useState(langue === 'FR' ? frProfile : enProfile);
     const [formations, setFormations] = useState(langue === 'FR' ? frFormation : enFormation);
@@ -292,84 +291,6 @@ function AboutPage({ darkTheme, langue, identity}) {
     const [skillsLang, setSkillsLang] = useState(skillsLanguages)
     const [skillsFrame, setSkillsFrame] = useState(skillsFrameworks)
 
-
-    useEffect(() => {
-
-        // fetch(`https://api/profile=${langue}`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setProfile(data);
-        //     })
-        //     .catch(error => {
-        //         console.log('erreur')
-        //     });
-
-        //     if (langue === "FR") {
-        //         setProfile(frProfile)
-        //     }
-
-
-
-        // fetch(`https://api/formation=${langue}`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setFormations(data);
-        //     })
-        //     .catch(error => {
-
-        //         console.log(error)
-
-        //     });
-
-
-        // fetch(`https://api/experience=${langue}`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setExperiences(data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-
-        //     });
-
-
-
-        // fetch(`https://api/profile_static_words=${langue}`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setStaticWords(data);
-        //     })
-        //     .catch(error => {
-
-        //         console.log(error)
-
-        //     });
-
-        // fetch(`https://api/skills_lang)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setSkillsLang(data);
-        //     })
-        //     .catch(error => {
-
-        //         console.log(error)
-
-        //     });
-
-        // fetch(`https://api/skills_framework)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setSkillsFrame(data);
-        //     })
-        //     .catch(error => {
-
-        //         console.log(error)
-
-        //     });
-
-        
-
-    }, [langue]);
 
     useEffect(() => {
         setStaticWords(langue === 'FR' ? frStaticWords : enStaticWords);
