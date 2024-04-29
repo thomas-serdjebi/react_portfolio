@@ -8,20 +8,6 @@ function FooterNavBar({darkTheme, langue}) {
 
   const [text, setText] = useState([])
 
-  useEffect(() => {
-
-    fetch(`https://api/footer=${langue}`)
-      .then(response => response.json())
-      .then(data => {
-          setText(data);
-      })
-      .catch(error => {
-        setText(["Concepteur développeur d'applications", 'Accueil', 'A propos']); 
-      });
-
-  }, [langue]); 
-
-
     return (
        <>
         <div className={` ${(darkTheme ? 'darktheme' : ' ') }`}>

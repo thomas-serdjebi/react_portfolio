@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import AboutJSX from './jsx/profile';
+import ProfileJSX from './jsx/profile';
 import ResumeJSX from './jsx/resume';
 import SkillsJSX from './jsx/skills';
-import '../styles/main.css'
-import '../styles/templ.css'
+
 
 
 function AboutPage({ darkTheme, langue, identity}) {
@@ -308,7 +307,7 @@ function AboutPage({ darkTheme, langue, identity}) {
 
     return (
         <>
-            <AboutJSX staticWords={staticWords} profile={profile} darkTheme={darkTheme} langue={langue} />
+            <ProfileJSX staticWords={staticWords} profile={profile} darkTheme={darkTheme} langue={langue} />
             <ResumeJSX staticWords={staticWords} profile={profile} formations={formations} experiences={experiences} darkTheme={darkTheme} langue={langue} />
             <SkillsJSX staticWords={staticWords} skillsLang={skillsLang} skillsFrame={skillsFrame} darkTheme={darkTheme} langue={langue} />
         </>
