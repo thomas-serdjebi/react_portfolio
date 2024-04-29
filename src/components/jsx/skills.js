@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SkillsSection({ staticWords, skillsLang, skillsFrame, darkTheme }) {
+function SkillsJSX({ staticWords, skillsLang, skillsFrame, darkTheme }) {
     return (
         <section id="skills" className={`skills section-bg resume ${darkTheme ? 'darktheme' : ''}`}>
             <div className="container" data-aos="fade-up">
@@ -52,4 +52,4 @@ function SkillsSection({ staticWords, skillsLang, skillsFrame, darkTheme }) {
     );
 }
 
-export default SkillsSection;
+export default SkillsJSX;

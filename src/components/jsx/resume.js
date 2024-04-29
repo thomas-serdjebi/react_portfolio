@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ResumeSection({ profile, staticWords, formations, experiences, darkTheme }) {
+function ResumeJSX({ profile, staticWords, formations, experiences, darkTheme }) {
     return (
         <section id="resume" className={`resume ${darkTheme ? 'darktheme' : ''}`}>
             <div className="container" data-aos="fade-up">
@@ -56,4 +56,4 @@ function ResumeSection({ profile, staticWords, formations, experiences, darkThem
     );
 }
 
-export default ResumeSection;
+export default ResumeJSX;
