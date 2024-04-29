@@ -6,7 +6,7 @@ function SkillsJSX({ staticWords, skillsLang, skillsFrame, darkTheme }) {
             <div className="container" data-aos="fade-up">
 
                 <div className="section-title">
-                    <h2>{staticWords['titre5']}</h2>
+                    <h2>{staticWords.titre5}</h2>
                 </div>
 
                 <div className="row skills-content">
@@ -16,9 +16,9 @@ function SkillsJSX({ staticWords, skillsLang, skillsFrame, darkTheme }) {
                         {skillsLang.map((skill, index) => (
 
                             <div key={index} className="progress">
-                                <span className={`skill ${darkTheme ? 'text-light': ''}`}>{skill['name']}<i className="val">{skill['value']}%</i></span>
+                                <span className={`skill ${darkTheme ? 'text-light': ''}`}>{skill.name}<i className="val">{skill.value}%</i></span>
                                 <div className="progress-bar-wrap">
-                                    <div className="progress-bar bg-warning" role="progressbar" style={{ width: `${skill['value']}%` }} aria-valuenow={skill.value} aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div className="progress-bar bg-warning" role="progressbar" style={{ width: `${skill.value}%` }} aria-valuenow={skill.value} aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
 
@@ -33,9 +33,9 @@ function SkillsJSX({ staticWords, skillsLang, skillsFrame, darkTheme }) {
                         {skillsFrame.map((skill, index) => (
 
                             <div key={index} className="progress">
-                                <span className={`skill ${darkTheme ? 'text-light': ''}`}>{skill['name']}<i className="val">{skill['value']}%</i></span>
+                                <span className={`skill ${darkTheme ? 'text-light': ''}`}>{skill.name}<i className="val">{skill.value}%</i></span>
                                 <div className="progress-bar-wrap">
-                                    <div className="progress-bar bg-warning" role="progressbar" style={{ width: `${skill['value']}%` }} aria-valuenow={skill.value} aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div className="progress-bar bg-warning" role="progressbar" style={{ width: `${skill.value}%` }} aria-valuenow={skill.value} aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
 
