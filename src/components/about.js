@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import AboutSection from './sections/profile';
-import ResumeSection from './sections/resume';
-import SkillsSection from './sections/skills';
+import AboutJSX from './jsx/profile';
+import ResumeJSX from './jsx/resume';
+import SkillsJSX from './jsx/skills';
 import '../styles/main.css'
 import '../styles/templ.css'
 
 
-function About({ darkTheme, langue }) {
+function AboutPage({ darkTheme, langue, identity}) {
 
     const frStaticWords = {
         titre1: 'PROFIL',
@@ -387,13 +387,13 @@ function About({ darkTheme, langue }) {
 
     return (
         <>
-            <AboutSection staticWords={staticWords} profile={profile} darkTheme={darkTheme} langue={langue} />
-            <ResumeSection staticWords={staticWords} profile={profile} formations={formations} experiences={experiences} darkTheme={darkTheme} langue={langue} />
-            <SkillsSection staticWords={staticWords} skillsLang={skillsLang} skillsFrame={skillsFrame} darkTheme={darkTheme} langue={langue} />
+            <AboutJSX staticWords={staticWords} profile={profile} darkTheme={darkTheme} langue={langue} />
+            <ResumeJSX staticWords={staticWords} profile={profile} formations={formations} experiences={experiences} darkTheme={darkTheme} langue={langue} />
+            <SkillsJSX staticWords={staticWords} skillsLang={skillsLang} skillsFrame={skillsFrame} darkTheme={darkTheme} langue={langue} />
         </>
     )
 
 }
 
 
-export default About;
+export default AboutPage;

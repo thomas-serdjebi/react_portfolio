@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from '../../assets/homepng.png';
 
-function AboutSection({ staticWords, profile, darkTheme }) {
+function AboutJSX({ staticWords, profile, darkTheme }) {
     return (
         <section id="about" className={`about ${darkTheme ? 'darktheme' : ''}`} style={{ paddingTop: '56px' }}>
             <div className={`main sectionboot d-flex pt-3 align-items-center justify-content-center ${darkTheme ? 'darktheme' : ''}`} data-aos="fade-up">
@@ -41,4 +41,4 @@ function AboutSection({ staticWords, profile, darkTheme }) {
     );
 }
 
-export default AboutSection;
+export default AboutJSX;
