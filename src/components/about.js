@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import AboutSection from './sections/about';
+import AboutSection from './sections/profile';
 import ResumeSection from './sections/resume';
+import SkillsSection from './sections/skills';
 import '../styles/main.css'
 import '../styles/templ.css'
 
@@ -14,7 +15,8 @@ function About({ darkTheme, langue }) {
         mobile: 'Mobile',
         titre2: 'Parcours',
         titre3: 'Formations',
-        titre4: 'Expériences professionnelles'
+        titre4: 'Expériences professionnelles',
+        titre5: 'Compétences Web & Programmation'
 
     }
 
@@ -25,7 +27,8 @@ function About({ darkTheme, langue }) {
         mobile: 'Phone number',
         titre2: 'Background',
         titre3: 'Education',
-        titre4: 'Professional Experiences'
+        titre4: 'Professional Experiences',
+        titre5: 'Web Skills & Programming'
     }
 
     const frProfile = {
@@ -218,12 +221,76 @@ function About({ darkTheme, langue }) {
         }
     ]
 
+    const skillsLanguages = [
+        {
+            name: 'HTML',
+            value: '100'
+        },
+        {
+            name: 'CSS',
+            value: '80'
+        },
+        {
+            name: 'JAVASCRIPT',
+            value: '80'
+        },
+        {
+            name: 'PHP',
+            value: '90'
+        },
+        {
+            name: 'SQL',
+            value: '90'
+        },
+        {
+            name: 'PYTHON',
+            value: '90'
+        },
+        {
+            name: 'L4G',
+            value: '90'
+        },
+    ]
+
+    const skillsFrameworks = [
+        {
+            name: 'SYMFONY',
+            value: '75'
+        },
+        {
+            name: 'REACT',
+            value: '75'
+        },
+        {
+            name: 'NODE.JS',
+            value: '80'
+        },
+        {
+            name: 'BOOTSTRAP',
+            value: '80'
+        },
+        {
+            name: 'EXPRESS.JS',
+            value: '80'
+        },
+        {
+            name: 'API',
+            value: '90'
+        },
+        {
+            name: 'MVC',
+            value: '100'
+        },
+    ]
+
+
 
     const [staticWords, setStaticWords] = useState(langue === 'FR' ? frStaticWords : enStaticWords);
     const [profile, setProfile] = useState(langue === 'FR' ? frProfile : enProfile);
     const [formations, setFormations] = useState(langue === 'FR' ? frFormation : enFormation);
     const [experiences, setExperiences] = useState(langue === 'FR' ? frExperience : enExperience);
-    
+    const [skillsLang, setSkillsLang] = useState(skillsLanguages)
+    const [skillsFrame, setSkillsFrame] = useState(skillsFrameworks)
 
 
     useEffect(() => {
@@ -278,7 +345,43 @@ function About({ darkTheme, langue }) {
 
         //     });
 
+        // fetch(`https://api/skills_lang)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setSkillsLang(data);
+        //     })
+        //     .catch(error => {
+
+        //         console.log(error)
+
+        //     });
+
+        // fetch(`https://api/skills_framework)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setSkillsFrame(data);
+        //     })
+        //     .catch(error => {
+
+        //         console.log(error)
+
+        //     });
+
+        
+
     }, [langue]);
+
+    useEffect(() => {
+        setStaticWords(langue === 'FR' ? frStaticWords : enStaticWords);
+        setProfile(langue === 'FR' ? frProfile : enProfile);
+        setFormations(langue === 'FR' ? frFormation : enFormation);
+        setExperiences(langue === 'FR' ? frExperience : enExperience);
+    }, [langue]);
+    
+    useEffect(() => {
+        setSkillsLang(skillsLanguages);
+        setSkillsFrame(skillsFrameworks);
+    }, []);
 
 
 
@@ -286,6 +389,7 @@ function About({ darkTheme, langue }) {
         <>
             <AboutSection staticWords={staticWords} profile={profile} darkTheme={darkTheme} langue={langue} />
             <ResumeSection staticWords={staticWords} profile={profile} formations={formations} experiences={experiences} darkTheme={darkTheme} langue={langue} />
+            <SkillsSection staticWords={staticWords} skillsLang={skillsLang} skillsFrame={skillsFrame} darkTheme={darkTheme} langue={langue} />
         </>
     )
 

@@ -8,11 +8,6 @@ import './styles/main.css'
 
 function App() {
 
-  const [darkTheme, setDarkTheme] = useState(sessionStorage.getItem('darkTheme') === 'true' || false); 
-  const [langue, setLangue] = useState(sessionStorage.getItem('langue') || 'FR'); 
-  const [identity, setIdentity] = useState(JSON.parse(sessionStorage.getItem('identity')) || (langue === 'FR' ? frIdentity : enIdentity));
-
-
   const frIdentity = {
     prenom: 'Thomas',
     nom: 'Serdjebi',
@@ -29,6 +24,12 @@ function App() {
     designation3: 'Discover me'
   }
   
+  
+  const [darkTheme, setDarkTheme] = useState(sessionStorage.getItem('darkTheme') === 'true' || false); 
+  const [langue, setLangue] = useState(sessionStorage.getItem('langue') || 'FR'); 
+  const [identity, setIdentity] = useState(JSON.parse(sessionStorage.getItem('identity')) || (langue === 'FR' ? frIdentity : enIdentity));
+
+
 
   useEffect(() => {
 
