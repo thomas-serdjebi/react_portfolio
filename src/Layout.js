@@ -5,6 +5,7 @@ import FooterNavBar from './components/navbars/footer';
 import HomePage from './components/home';
 import AboutPage from './components/about';
 import ProjectsPage from './components/projects';
+import BlogPage from './components/blog';
 import './styles/main.css';
 import './styles/templ.css'
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -50,6 +51,7 @@ function Layout() {
         <Route path="/projects" element={<ProjectsPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
         <Route path="/about" element={<AboutPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
         <Route path="/home" element={<HomePage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+        <Route path="/blog" element={<BlogPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
       </Routes>
       <FooterNavBar darkTheme={darkTheme} langue={langue} />
     </BrowserRouter>
