@@ -1,4 +1,4 @@
-import PostsJSX from './jsx/post';
+import PostsJSX from './jsx/posts';
 import React, { useState, useEffect } from 'react';
 import '../styles/posts.css'
 
@@ -22,7 +22,8 @@ function BlogPage({ darkTheme, identity, langue }) {
   useEffect(() => {
     getTenPosts();
  
-  })
+
+  }, [])
 
   return (
     <PostsJSX darkTheme={darkTheme} identity={identity} langue={langue} posts={posts} />
