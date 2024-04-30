@@ -56,7 +56,7 @@ function PostJSX({
                                         </div>
                                     </div>
                                     <div className="img-post">
-                                        <img className="d-block img-fluid" src="https://random-image-pepebigotes.vercel.app/api/random-image" alt="First slide" />
+                                        <img className="d-block img-fluid" src={post.img} alt="" />
                                     </div>
                                     {isEditing ? (
                                         <textarea value={editedBody} onChange={handleBodyChange} className="form-control mb-3" rows="5" />

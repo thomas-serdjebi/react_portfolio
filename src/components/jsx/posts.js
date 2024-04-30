@@ -11,7 +11,7 @@ function PostsJSX({ darkTheme, identity, posts }) {
               <li key={index} className="col-lg-4 col-md-5 image-block full-width p-3">
                 <div className="image-block-inner">
                   <a className="mh-100 text-decoration-none text-dark fw-bold" href="#">
-                    <img src="https://random-image-pepebigotes.vercel.app/api/random-image" alt="LunarXP Wins Space Innovator of the Year Award" className="img-responsive w-100" />
+                    <img src={post.img} alt="" className="img-responsive w-100" />
                   </a>
                   <span className="hp-posts-cat">
                     {post.tags.map((tag, index) => (

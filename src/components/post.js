@@ -13,6 +13,11 @@ function PostPage({ darkTheme, identity, langue }) {
     const [editedBody, setEditedBody] = useState(post.body);
     const [editedTitle, setEditedTitle] = useState(post.title)
 
+     //Je sais qu'il ne faut pas mettre les clé d'API en public mais c'est qu'un projet scolaire
+  //sinon.env
+  const API_KEY = "PAXwCgMG1KtNcIYYcSCGG874SS1yWE6EWk6xagHoPw1lzJmzPQP3LKHW"
+
+  
     const handleEditButtonClick = () => {
         setIsEditing(true);
         setEditedBody(post.body)
@@ -62,41 +67,52 @@ function PostPage({ darkTheme, identity, langue }) {
         fetch(`https://dummyjson.com/posts/${id}`, {
             method: 'DELETE',
         })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error('Failed to delete post');
-            }
-            return res.json();
-        })
-        .then(res => 
-            setPost([]),
-            setComments([]))
-        .catch(error => {
-            console.error('Error deleting post:', error);
-        });
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Failed to delete post');
+                }
+                return res.json();
+            })
+            .then(res =>
+                setPost([]),
+                setComments([]))
+            .catch(error => {
+                console.error('Error deleting post:', error);
+            });
     }
 
 
     const getPostAndComments = () => {
         fetch(`https://dummyjson.com/posts/${id}`)
             .then(response => response.json())
-            .then(data => {
-                setPost(data)
+            .then(postData => {
+                fetch('https://api.pexels.com/v1/curated?page=1&per_page=10', {
+                    headers: {
+                        'Authorization': API_KEY
+                    }
+                })
+                .then(response => response.json())
+                .then(imagesData => {
+                    const imageIndex = id - 1;
+                    const imageUrl = imagesData.photos[imageIndex] ? imagesData.photos[imageIndex].src.landscape : '';
+                    const postWithImage = { ...postData, img: imageUrl };
+                    setPost(postWithImage);
+                }) 
             })
             .catch(error => {
                 console.error('Erreur lors de la récupération des articles :', error);
             });
-
+    
         fetch(`https://dummyjson.com/posts/${id}/comments`)
             .then(response => response.json())
             .then(data => {
-                setComments(data.comments)
+                setComments(data.comments);
             })
             .catch(error => {
                 console.error('Erreur lors de la récupération des articles :', error);
             });
     }
-
+    
 
 
 
