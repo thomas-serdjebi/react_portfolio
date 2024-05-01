@@ -5,6 +5,9 @@ import FooterNavBar from './components/navbars/footer';
 import HomePage from './components/home';
 import AboutPage from './components/about';
 import ProjectsPage from './components/projects';
+import BlogPage from './components/blog';
+import PostPage from './components/post';
+import AddPostPage from './components/addPost';
 import './styles/main.css';
 import './styles/templ.css'
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -42,18 +45,28 @@ function Layout() {
 
   }, [darkTheme, langue]);
 
-  return (
+  const minHeightStyle = {
+    minHeight: '650px'
+};
+
+return (
     <BrowserRouter>
-      <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} identity={identity} />
-      <Routes>
-        <Route index element={<HomePage darkTheme={darkTheme} langue={langue} identity={identity} />} />
-        <Route path="/projects" element={<ProjectsPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
-        <Route path="/about" element={<AboutPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
-        <Route path="/home" element={<HomePage darkTheme={darkTheme} langue={langue} identity={identity} />} />
-      </Routes>
-      <FooterNavBar darkTheme={darkTheme} langue={langue} />
+
+            <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} identity={identity} />
+            <div style={minHeightStyle}>
+            <Routes>
+                <Route index element={<HomePage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+                <Route path="/projects" element={<ProjectsPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+                <Route path="/about" element={<AboutPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+                <Route path="/home" element={<HomePage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+                <Route path="/blog" element={<BlogPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+                <Route path="/post/:id" element={<PostPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+                <Route path="/add_post" element={<AddPostPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+            </Routes>
+            </div>
+            <FooterNavBar darkTheme={darkTheme} langue={langue} />
     </BrowserRouter>
-  );
+);
 }
 
 export default Layout;
