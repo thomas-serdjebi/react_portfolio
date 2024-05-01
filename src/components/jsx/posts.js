@@ -1,11 +1,15 @@
 import React from 'react';
 
-function PostsJSX({ darkTheme, identity, posts }) {
+function PostsJSX({ darkTheme, identity, posts}) {
   return (
     <section className={`  news ${darkTheme ? 'darktheme' : ''}`} style={{ paddingTop: '100px' }}>
       <div className="container mt-md-5">
         <div className="container">
-          <h2 className="mx-4 my-0 text-center">Recent News</h2>
+          <div className="d-flex flex-row justify-content-center">
+            <h2 className="mx-4 my-0 text-center fw-bold">Recent News</h2>
+            <button type="button" className={`btn ${darkTheme ? "btn-light" : "btn-dark"}`}>
+              <a className={`text-decoration-none ${darkTheme ? "text-dark" : "text-light"}`} href="/add_post">Add a post</a></button>
+          </div>
           <ul className="row d-lg-flex list-unstyled image-block justify-content-center px-lg-0 mx-lg-0">
             {posts.map((post, index) => (
               <li key={index} className="col-lg-4 col-md-5 image-block full-width p-3">
@@ -26,7 +30,7 @@ function PostsJSX({ darkTheme, identity, posts }) {
             ))}
           </ul>
         </div>
-        </div>
+      </div>
     </section>
   );
 }

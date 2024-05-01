@@ -12,12 +12,14 @@ function PostPage({ darkTheme, identity, langue }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedBody, setEditedBody] = useState(post.body);
     const [editedTitle, setEditedTitle] = useState(post.title)
+    const [isAddingForm, setIsAddingForm] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
 
-     //Je sais qu'il ne faut pas mettre les clé d'API en public mais c'est qu'un projet scolaire
-  //sinon.env
-  const API_KEY = "PAXwCgMG1KtNcIYYcSCGG874SS1yWE6EWk6xagHoPw1lzJmzPQP3LKHW"
+    //Je sais qu'il ne faut pas mettre les clé d'API en public mais c'est qu'un projet scolaire
+    //sinon.env
+    const API_KEY = "PAXwCgMG1KtNcIYYcSCGG874SS1yWE6EWk6xagHoPw1lzJmzPQP3LKHW"
 
-  
+
     const handleEditButtonClick = () => {
         setIsEditing(true);
         setEditedBody(post.body)
@@ -41,6 +43,8 @@ function PostPage({ darkTheme, identity, langue }) {
     const handleTitleChange = (event) => {
         setEditedTitle(event.target.value)
     }
+
+
     const handleUpdate = () => {
         fetch(`https://dummyjson.com/posts/${id}`, {
             method: 'PATCH',
@@ -56,11 +60,15 @@ function PostPage({ darkTheme, identity, langue }) {
                 }
                 return res.json();
             })
-            .then(res => setPost(res))
+            .then(res => {
+
+                setPost(prevPost => ({ ...prevPost, title: res.title, body: res.body }));
+            })
             .catch(error => {
                 console.error('Error updating post:', error);
             });
-    }
+    };
+
 
 
     const handleDelete = () => {
@@ -75,7 +83,8 @@ function PostPage({ darkTheme, identity, langue }) {
             })
             .then(res =>
                 setPost([]),
-                setComments([]))
+                setComments([]),
+                setIsDeleted(true))
             .catch(error => {
                 console.error('Error deleting post:', error);
             });
@@ -91,18 +100,18 @@ function PostPage({ darkTheme, identity, langue }) {
                         'Authorization': API_KEY
                     }
                 })
-                .then(response => response.json())
-                .then(imagesData => {
-                    const imageIndex = id - 1;
-                    const imageUrl = imagesData.photos[imageIndex] ? imagesData.photos[imageIndex].src.landscape : '';
-                    const postWithImage = { ...postData, img: imageUrl };
-                    setPost(postWithImage);
-                }) 
+                    .then(response => response.json())
+                    .then(imagesData => {
+                        const imageIndex = id - 1;
+                        const imageUrl = imagesData.photos[imageIndex] ? imagesData.photos[imageIndex].src.landscape : '';
+                        const postWithImage = { ...postData, img: imageUrl };
+                        setPost(postWithImage);
+                    })
             })
             .catch(error => {
                 console.error('Erreur lors de la récupération des articles :', error);
             });
-    
+
         fetch(`https://dummyjson.com/posts/${id}/comments`)
             .then(response => response.json())
             .then(data => {
@@ -112,7 +121,7 @@ function PostPage({ darkTheme, identity, langue }) {
                 console.error('Erreur lors de la récupération des articles :', error);
             });
     }
-    
+
 
 
 
@@ -136,6 +145,8 @@ function PostPage({ darkTheme, identity, langue }) {
             handleTitleChange={handleTitleChange}
             editedBody={editedBody}
             editedTitle={editedTitle}
+            isAddingForm={isAddingForm}
+            isDeleted={isDeleted}
         />
     )
 

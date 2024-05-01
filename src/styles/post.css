@@ -256,3 +256,9 @@ get the result that you can see in the preview selection body {
         padding: 30px
     }
 }
+
+.adding_form .form-control {
+    font-size: 1.25rem; 
+    height: auto !important; 
+    min-height: 3rem; 
+  }
