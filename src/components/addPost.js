@@ -9,8 +9,9 @@ function AddPostPage({ darkTheme, identity, langue }) {
     const [post, setPost] = useState(null);
     const [isAddingForm, setIsAddingForm] = useState(true);
     const [newPost, setIsNewPost] = useState(false)
+    const [message, setMessage] = useState('')
     const [deleted, isDeleted] = useState(false)
-  
+
 
     // Je sais qu'il ne faut pas mettre les clés d'API en public mais c'est qu'un projet scolaire
     // sinon.env
@@ -35,6 +36,11 @@ function AddPostPage({ darkTheme, identity, langue }) {
 
 
     const handleAddPost = (title, body) => {
+        if (!title || !body) { 
+            setMessage('You need a title and a body to create your post.');
+            return; 
+        }
+    
         fetch('https://dummyjson.com/posts/add', {
             method: 'POST',
             headers: {
@@ -43,29 +49,30 @@ function AddPostPage({ darkTheme, identity, langue }) {
             body: JSON.stringify({
                 title: title,
                 body: body,
-                userId: 5 
+                userId: 5
             })
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to add post');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data)
-                setPost(data);
-                setIsAddingForm(false); 
-                setIsNewPost(true);
-            })
-            .catch(error => {
-                console.error('Error adding post:', error);
-            });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add post');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            setPost(data);
+            setIsAddingForm(false);
+            setIsNewPost(true);
+            setMessage('')
+        })
+        .catch(error => {
+            console.error('Error adding post:', error);
+        });
     };
-
+    
     useEffect(() => {
-        
-      }, [])
+
+    }, [])
 
     return (
         <PostJSX
@@ -80,6 +87,7 @@ function AddPostPage({ darkTheme, identity, langue }) {
             isAddingForm={isAddingForm}
             newPost={newPost}
             deleted={isDeleted}
+            message={message}
         />
     );
 }

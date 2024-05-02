@@ -37,7 +37,10 @@ function Layout() {
   const [darkTheme, setDarkTheme] = useState(sessionStorage.getItem('darkTheme') === 'true' || false);
   const [langue, setLangue] = useState(sessionStorage.getItem('langue') || 'FR');
   const [identity, setIdentity] = useState(JSON.parse(sessionStorage.getItem('identity')) || (langue === 'FR' ? frIdentity : enIdentity));
-  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('token') !== null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+
+ 
 
   useEffect(() => {
 
@@ -45,9 +48,15 @@ function Layout() {
     sessionStorage.setItem('darkTheme', darkTheme ? 'true' : 'false');
     sessionStorage.setItem('langue', langue);
     sessionStorage.setItem('identity', JSON.stringify(identity));
+    
 
+    const token = sessionStorage.getItem('token');
+    setIsLoggedIn(token !== null && token !== undefined);
+    console.log(sessionStorage.getItem('token'))
+    console.log('islog?')
+    console.log(isLoggedIn)
 
-  }, [darkTheme, langue, isLoggedIn]);
+  }, [darkTheme, langue, isLoggedIn ]);
 
   const minHeightStyle = {
     minHeight: '650px'
@@ -56,7 +65,7 @@ function Layout() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} identity={identity} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
+        <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} identity={identity} setIsLoggedIn={setIsLoggedIn}isLoggedIn={isLoggedIn} />
         <div style={minHeightStyle}>
           <Routes>
             <Route index element={<HomePage darkTheme={darkTheme} langue={langue} identity={identity} />} />
@@ -73,14 +82,36 @@ function Layout() {
                 )
               }
             />
-            <Route path="/post/:id" element={<PostPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
-            <Route path="/add_post" element={<AddPostPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
+
+            <Route
+              path="/post/:id"
+              element={
+               isLoggedIn ? (
+                  <PostPage darkTheme={darkTheme} langue={langue} identity={identity} />
+                ) : (
+                  <LoginForm darkTheme={darkTheme} setIsLoggedIn={setIsLoggedIn} />
+                )
+              }
+            />
+
+            <Route
+              path="/add_post"
+              element={
+               isLoggedIn ? (
+                  <AddPostPage darkTheme={darkTheme} langue={langue} identity={identity} />
+                ) : (
+                  <LoginForm darkTheme={darkTheme} setIsLoggedIn={setIsLoggedIn} />
+                )
+              }
+            />
+
             <Route path="/login" element={<LoginForm darkTheme={darkTheme} setIsLoggedIn={setIsLoggedIn} />} />
           </Routes>
         </div>
         <FooterNavBar darkTheme={darkTheme} langue={langue} />
       </AuthProvider>
     </BrowserRouter>
+
   );
 }
 

@@ -10,8 +10,8 @@ function BlogPage({ darkTheme, identity, langue}) {
   //sinon.env
   const API_KEY = "PAXwCgMG1KtNcIYYcSCGG874SS1yWE6EWk6xagHoPw1lzJmzPQP3LKHW"
 
-  const getTenPosts = () => {
-    fetch('https://dummyjson.com/posts?limit=10')
+  const getTenPosts = async () => {
+     await fetch('https://dummyjson.com/posts?limit=10')
       .then(response => response.json())
       .then(data => {
         const postsData = data.posts;

@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
-    const [token, setToken] = useState(localStorage.getItem('token'));
+    const [token, setToken] = useState(sessionStorage.getItem('token'));
     const [message, setMessage] = useState('');
     
     const login = async (username, password, setIsLoggedIn) => {
@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
             });
     
             const data = await response.json();
-    
+            console.log(data)
             if (!data.id) {
                 setMessage("Username or password is false.");
             } else {
@@ -41,10 +41,11 @@ const AuthProvider = ({ children }) => {
     };
     
 
-    const logout = () => {
+    const logout = (setIsLoggedIn) => {
         setUser(null);
         setToken(null);
         sessionStorage.removeItem('token');
+        setIsLoggedIn(false);
     };
 
     const refreshSession = async () => {

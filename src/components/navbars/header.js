@@ -6,7 +6,6 @@ function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue, se
 
   const [scrolled, setScrolled] = useState(false);
   const [activeLangue, setActiveLangue] = useState(langue);
-  const [token, setToken] = useState(sessionStorage.getItem('token'));
 
   const frMenus = {
     home: 'Accueil',
@@ -65,13 +64,12 @@ function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue, se
 
   useEffect(() => {
     const storedToken = sessionStorage.getItem('token');
-    setToken(storedToken);
+    setIsLoggedIn(!!storedToken); 
   }, []);
 
   const handleLogout = () => {
     sessionStorage.removeItem('token');
-    setToken(null);
-    setIsLoggedIn(false)
+    setIsLoggedIn(false);
   };
 
   return (

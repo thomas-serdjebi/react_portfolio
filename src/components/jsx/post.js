@@ -16,7 +16,8 @@ function PostJSX({
     editedTitle,
     isAddingForm,
     newPost,
-    isDeleted 
+    isDeleted,
+    message
 }) {
     return (
         <div>
@@ -40,7 +41,7 @@ function PostJSX({
                                         <div className="body">
                                             <div className="container d-flex flex-row justify-content-between mb-3">
                                                 <div className="title-input">
-                                                    {isEditing || isAddingForm ? (
+                                                    {isEditing || isAddingForm ? (<>
                                                         <input
                                                             type="text"
                                                             value={editedTitle}
@@ -49,10 +50,16 @@ function PostJSX({
                                                             placeholder="Enter title"
                                                             style={{ width: '100%' }}
                                                         />
+                                                    </>
                                                     ) : (
                                                         <h3>{post.title}</h3>
                                                     )}
                                                 </div>
+                                                {message && (
+                                                    <div className="alert alert-danger" role="alert">
+                                                        {message}
+                                                    </div>
+                                                )}
                                                 <div className="buttons">
                                                     {newPost ? (
                                                         <>
