@@ -67,7 +67,7 @@ function PostJSX({
                                                                 Post created successfully
                                                             </div>
                                                             <div>
-                                                                <a className={`text-decoration-none ${darkTheme ? 'text-dark' : 'text-light'}`} href="/blog">Go back to blog</a>
+                                                                <a className="text-decoration-none text-dark" href="/blog">Go back to blog</a>
                                                             </div>
                                                         </>
                                                     ) : (
