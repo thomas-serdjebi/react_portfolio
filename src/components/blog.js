@@ -1,12 +1,10 @@
 import PostsJSX from './jsx/posts';
 import React, { useState, useEffect } from 'react';
 import '../styles/posts.css'
-import { SiRacket } from 'react-icons/si';
 
-function BlogPage({ darkTheme, identity, langue }) {
+function BlogPage({ darkTheme, identity, langue}) {
 
   const [posts, setPosts] = useState([])
-  const [images, setImages] = useState([])
 
   //Je sais qu'il ne faut pas mettre les clé d'API en public mais c'est qu'un projet scolaire
   //sinon.env
@@ -37,9 +35,9 @@ function BlogPage({ darkTheme, identity, langue }) {
   }
 
 
-
   useEffect(() => {
-    getTenPosts();
+      getTenPosts();
+  
   }, [])
 
   return (
