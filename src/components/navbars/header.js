@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Profile from "../../assets/profile.jpg";
 import '../../styles/nav.css'
 
-function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue }) {
+function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue, setIsLoggedIn, isLoggedIn }) {
 
   const [scrolled, setScrolled] = useState(false);
   const [activeLangue, setActiveLangue] = useState(langue);
+  const [token, setToken] = useState(sessionStorage.getItem('token'));
 
   const frMenus = {
     home: 'Accueil',
@@ -33,17 +34,6 @@ function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue }) 
       }
     };
 
-    // Commented out API fetch, uncomment to fetch menus from an API
-    /*
-    fetch(`https://api/header=${langue}`)
-      .then(response => response.json())
-      .then(data => {
-        setMenus(data);
-      })
-      .catch(error => {
-        console.log(error)
-      });
-    */
 
     setMenus(langue === 'FR' ? frMenus : enMenus);
     setActiveLangue(langue);
@@ -55,6 +45,15 @@ function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue }) 
     };
   }, [langue]);
 
+  useEffect(() => {
+    sessionStorage.setItem('langue', langue);
+  }, [langue]);
+
+
+  useEffect(() => {
+    sessionStorage.setItem('darkTheme', darkTheme);
+  }, [darkTheme]);
+
   const toggleTheme = () => {
     setDarkTheme(!darkTheme);
   };
@@ -65,13 +64,15 @@ function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue }) 
   };
 
   useEffect(() => {
-    sessionStorage.setItem('langue', langue);
-  }, [langue]);
+    const storedToken = sessionStorage.getItem('token');
+    setToken(storedToken);
+  }, []);
 
-
-  useEffect(() => {
-    sessionStorage.setItem('darkTheme', darkTheme);
-  }, [darkTheme]);
+  const handleLogout = () => {
+    sessionStorage.removeItem('token');
+    setToken(null);
+    setIsLoggedIn(false)
+  };
 
   return (
     <>
@@ -102,6 +103,11 @@ function HeaderNavBar({ darkTheme, setDarkTheme, identity, langue, setLangue }) 
               <button type="button" className={`btn ${activeLangue === 'EN' ? (darkTheme ? 'btn-light' : 'btn-dark') : (darkTheme ? 'btn-dark' : 'btn-light')}`} onClick={() => changeLangue('EN')}>EN</button>
               <button type="button" className={`btn ${activeLangue === 'FR' ? (darkTheme ? 'btn-light' : 'btn-dark') : (darkTheme ? 'btn-dark' : 'btn-light')}`} onClick={() => changeLangue('FR')}>FR</button>
             </div>
+            {isLoggedIn ? (
+              <button className={`btn ${darkTheme ? 'btn-light' : 'btn-dark'}`} onClick={handleLogout}>
+                {langue === 'FR' ? 'Déconnexion' : 'Logout'}
+              </button>
+            ) : null}
             <button className={`btn ${darkTheme ? 'btn-light' : 'btn-dark'}`} onClick={toggleTheme}>Theme</button>
           </nav>
         </header>
