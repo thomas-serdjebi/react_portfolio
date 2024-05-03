@@ -59,14 +59,14 @@ function Layout() {
   }, [darkTheme, langue, isLoggedIn ]);
 
   const minHeightStyle = {
-    minHeight: '650px'
+    minHeight: '100vh'
   };
 
   return (
     <BrowserRouter>
       <AuthProvider>
         <HeaderNavBar darkTheme={darkTheme} setDarkTheme={setDarkTheme} langue={langue} setLangue={setLangue} identity={identity} setIsLoggedIn={setIsLoggedIn}isLoggedIn={isLoggedIn} />
-        <div style={minHeightStyle}>
+        <div style={minHeightStyle} className={` ${darkTheme ?  'bg-dark' : 'bg-light'}`}>
           <Routes>
             <Route index element={<HomePage darkTheme={darkTheme} langue={langue} identity={identity} />} />
             <Route path="/projects" element={<ProjectsPage darkTheme={darkTheme} langue={langue} identity={identity} />} />
